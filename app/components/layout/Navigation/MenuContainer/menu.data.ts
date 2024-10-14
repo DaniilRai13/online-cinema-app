@@ -1,4 +1,4 @@
-import { IMenu } from './Menu.interface'
+import { IMenu } from './Menu/Menu.interface'
 
 export const firstMenu: IMenu = {
 	title: 'menu',

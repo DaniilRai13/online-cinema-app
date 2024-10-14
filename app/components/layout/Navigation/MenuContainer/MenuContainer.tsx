@@ -1,12 +1,12 @@
-import {FC} from 'react'
-import Menu from './Menu'
+import { FC } from 'react'
+import Menu from './Menu/Menu'
 import { firstMenu, userMenu } from './menu.data'
 
-const MenuContainer:FC = () => {
+const MenuContainer: FC = () => {
 	return (
 		<div>
-			<Menu menu={firstMenu}/>
-			<Menu menu={userMenu}/>
+			<Menu menu={firstMenu} />
+			<Menu menu={userMenu} />
 		</div>
 	)
 }

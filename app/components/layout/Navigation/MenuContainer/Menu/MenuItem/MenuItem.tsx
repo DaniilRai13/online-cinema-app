@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 // import { useNavigation } from 'react-router-dom'
 
-import { IMenuItem } from '../../Menu.interface'
+import { IMenuItem } from '../Menu.interface'
 
 import { MaterialIcon } from '@/components/ui/MaterialIcon'
 import { usePathname } from 'next/navigation'

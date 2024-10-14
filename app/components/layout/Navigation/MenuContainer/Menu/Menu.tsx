@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import MenuItem from './Menu/MenuItem/MenuItem'
+import MenuItem from './MenuItem/MenuItem'
 
+import AuthItems from '../auth/AuthItems'
 import { IMenu } from './Menu.interface'
-import styles from './Menu/Menu.module.scss'
-import AuthItems from './auth/AuthItems'
+import styles from './Menu.module.scss'
 
 const Menu: FC<{ menu: IMenu }> = ({ menu: { title, items } }) => {
 	return (

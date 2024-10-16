@@ -11,14 +11,14 @@ const nextConfig = {
 		return [
 			{
 				source: '/api/:path*',
-				destination: 'https://localhost:4200/api/:path*',
+				destination: 'http://localhost:4200/api/:path*',
 			},
 			{
 				source: '/uploads/:path*',
-				destination: 'https://localhost:4200/uploads/:path*',
+				destination: 'http://localhost:4200/uploads/:path*',
 			},
 		]
 	}
 }
 
-export default nextConfig
+module.exports = nextConfig

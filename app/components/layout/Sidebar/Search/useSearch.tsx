@@ -7,7 +7,7 @@ const useSearch = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const debounceSearch = useDebounce(searchTerm, 500)
 
-	const { isSuccess, data } = useQuery(['search movie list', debounceSearch], () => MovieService.getAll(debounceSearch), {
+	const { isSuccess, data } = useQuery(['search movie list', debounceSearch], () => MovieService.getMoviesBySearchTerm (debounceSearch), {
 		select: ({ data }) => data,
 		enabled: !!debounceSearch
 	})

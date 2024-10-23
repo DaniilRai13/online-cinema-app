@@ -6,13 +6,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import style from './SearchList.module.scss'
-interface LoaderProp {
-	src: string
-}
+
 const SearchList: FC<{ movies: IMovie[] }> = ({ movies }) => {
-	const loaderProp = ({ src }: LoaderProp): string => {
-		return src
-	}
+
 	console.log(movies)
 	return (
 		<div className={style.list}>
@@ -29,7 +25,6 @@ const SearchList: FC<{ movies: IMovie[] }> = ({ movies }) => {
 								objectPosition='top'
 								draggable={false}
 								alt={movie.title}
-								loader={loaderProp}
 							/>
 						</a>
 						<span>{movie.title}</span>

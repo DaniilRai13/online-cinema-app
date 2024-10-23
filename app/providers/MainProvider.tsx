@@ -2,8 +2,12 @@
 
 import Layout from '@/components/layout/Layout'
 import { ILayout } from '@/components/screens/Home/Home.interface'
+import { store } from '@/store/store'
 import { FC } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { Provider } from 'react-redux'
+import Progressbar from './HeadProvider/Progressbar'
+import ReduxToast from './ReduxToast'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,11 +19,16 @@ const queryClient = new QueryClient({
 
 const MainProvider: FC<ILayout> = ({ children }) => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<Layout>
-				{children}
-			</Layout>
-		</QueryClientProvider>
+		<Progressbar>
+			<Provider store={store}>
+				<QueryClientProvider client={queryClient}>
+					<ReduxToast />
+					<Layout>
+						{children}
+					</Layout>
+				</QueryClientProvider>
+			</Provider>
+		</Progressbar>
 	)
 }
 

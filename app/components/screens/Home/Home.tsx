@@ -1,9 +1,9 @@
 import Heading from '@/components/ui/heading/Heading'
 import Meta from '@/utils/meta/Meta'
-import { FC } from 'react'
+import { NextPage } from 'next'
 import { IHome } from './Home.interface'
 
-const Home: FC<IHome> = () => {
+const Home: NextPage<IHome> = () => {
 	return (
 		<Meta
 			title="Watch movies online"

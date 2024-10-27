@@ -12,7 +12,7 @@ import styles from '../Menu.module.scss'
 
 const MenuItem: FC<{ item: IMenuItem }> = ({ item }) => {
 	const pathname = usePathname()
-	console.log(pathname, item.link)
+
 	return (
 		<li className={cn({
 			[styles.active]: pathname === item.link

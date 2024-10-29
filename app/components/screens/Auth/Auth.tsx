@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { IAuthInput } from './auth.interface'
 import { useAuthRedirect } from './useAuthRedirect'
 
+import { useActions } from '@/hooks/useActions'
 import Button from '@/ui/form-elements/Button'
 import Heading from '@/ui/heading/Heading'
 import styles from './Auth.module.scss'
@@ -24,12 +25,11 @@ const Auth: FC = () => {
 			mode: 'onChange'
 		})
 
-	const login = () => { }
-	const register = () => { }
+	const { register, login } = useActions()
 
-	const onSubmit: SubmitHandler<IAuthInput> = () => {
-		if (type === 'login') login()
-		else if (type === 'register') register()
+	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
+		if (type === 'login') login(data)
+		else if (type === 'register') register(data)
 
 		reset()
 	}

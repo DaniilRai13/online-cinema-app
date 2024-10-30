@@ -12,10 +12,9 @@ const Menu: FC<{ menu: IMenu }> = ({ menu: { title, items } }) => {
 			<ul className={styles.ul}>
 				{items.map(item => (
 					<MenuItem item={item} key={item.link} />
-					// <div>{item.title}</div>
 				))}
-			</ul>
 			{title === 'General' ? <AuthItems /> : null}
+			</ul>
 		</div>
 	)
 }

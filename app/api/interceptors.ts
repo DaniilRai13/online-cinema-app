@@ -1,9 +1,9 @@
 import { API_URL } from '@/config/api.config'
-// import { AuthService } from '@/services/auth/auth.service'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { getContentType } from './api.helper'
-// import { removeTokensStorage } from '@/services/auth/auth.helper'
+import { errorCatch, getContentType } from './api.helper'
+import { removeTokensStorage } from '@/services/auth/auth.helper'
+import { AuthService } from '@/services/auth/auth.service'
 
 export const axiosClassic = axios.create({
 	baseURL: API_URL,
@@ -24,5 +24,26 @@ instance.interceptors.request.use((config) => {
 
 	return config
 })
+
+instance.interceptors.response.use((config) => config, async error => {
+	const originalRequest = error.config
+
+	if (
+		(error.response.status === 401
+			|| errorCatch(error) === 'jwt expired'
+			|| errorCatch(error) === 'jwt must be provided') && error.config && !error.config.isRetry) {
+		originalRequest._isRetry = true
+		try {
+			await AuthService.getNewTokens()
+			return instance.request(originalRequest)
+		} catch (error) {
+			if (errorCatch(error) === 'jwt expired') {
+				removeTokensStorage()
+			}
+		}
+	}
+	throw error
+}
+)
 
 export default instance

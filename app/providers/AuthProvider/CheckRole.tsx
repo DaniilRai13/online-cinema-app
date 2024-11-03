@@ -9,12 +9,11 @@ const CheckRole: FC<TypeComponentAuthFields & { children: ReactNode }> = ({ chil
 	const { user } = useAuth()
 	const pathname = usePathname()
 	const router = useRouter()
-	
+
 	const Children = () => {
 		return <>{children}</>
 	}
 
-	if (!isOnlyAdmin && !isOnlyUser) return <Children /> // not auth person
 	if (user?.isAdmin) return <Children />
 	if (isOnlyAdmin) {
 		if (pathname !== '/404') router.push('/404')

@@ -8,6 +8,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import Progressbar from './HeadProvider/Progressbar'
 import ReduxToast from './ReduxToast'
+import AuthProvider from './AuthProvider/AuthProvider'
+import { TypeComponentAuthFields } from '@/shared/types/auth.types'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -17,15 +19,17 @@ const queryClient = new QueryClient({
 	}
 })
 
-const MainProvider: FC<ILayout> = ({ children }) => {
+const MainProvider: FC<ILayout & TypeComponentAuthFields> = ({ children, Component }) => {
 	return (
 		<Progressbar>
 			<Provider store={store}>
 				<QueryClientProvider client={queryClient}>
 					<ReduxToast />
-					<Layout>
-						{children}
-					</Layout>
+					<AuthProvider Component={Component}>
+						<Layout>
+							{children}
+						</Layout>
+					</AuthProvider>
 				</QueryClientProvider>
 			</Provider>
 		</Progressbar>

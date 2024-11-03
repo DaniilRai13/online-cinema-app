@@ -1,3 +1,10 @@
 .navigation {
 	@apply py-layout;
+
+	>a {
+		img {
+			width: auto;
+			height: 34px;
+		}
+	}
 }

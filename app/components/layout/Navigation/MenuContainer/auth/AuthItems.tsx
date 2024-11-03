@@ -1,5 +1,5 @@
 
-import { getAdminHomeUrl } from '@/config/url.config'
+import { getAdminUrl } from '@/config/url.config'
 import { useAuth } from '@/hooks/useAuth'
 import { FC } from 'react'
 import MenuItem from '../Menu/MenuItem/MenuItem'
@@ -15,7 +15,7 @@ const AuthItems: FC = () => {
 					{
 						icon: 'MdOutlineLock',
 						title: 'Admin Panel',
-						link: getAdminHomeUrl()
+						link: getAdminUrl('admin')
 					}
 				} />
 			}

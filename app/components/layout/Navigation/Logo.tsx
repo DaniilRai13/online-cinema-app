@@ -3,12 +3,12 @@ import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import logoImage from '@/assets/images/logo.svg'
+import logoImage from '@/assets/images/logo.png'
 
 const Logo: FC = () => {
 	return (
 		<Link href='/'>
-			<div className='px-layout mb-10 block'>
+			<div className='px-layout mb-8 block'>
 				<Image
 					src={logoImage}
 					alt='logo'

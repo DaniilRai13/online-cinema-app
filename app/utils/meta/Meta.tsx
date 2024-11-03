@@ -7,7 +7,7 @@ import { FC } from 'react'
 import { onlyText } from '../string/clearText'
 import { ISeo } from './meta.interface'
 
-import logoImage from '@/assets/images/logo.svg'
+import logoImage from '@/assets/images/logo.png'
 
 const Meta: FC<ISeo> = ({ title, description, image, children }) => {
 	const pathname = usePathname()

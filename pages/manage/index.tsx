@@ -1,8 +1,9 @@
+import Admin from '@/components/screens/Admin/Admin'
 import { NextPageAuth } from '@/shared/types/auth.types'
 
 const AdminPage: NextPageAuth = () => {
 	return (
-		<div>AdminPage</div>
+		<Admin />
 	)
 }
 AdminPage.isOnlyAdmin = true

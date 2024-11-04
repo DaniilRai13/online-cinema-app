@@ -1,9 +1,9 @@
 import { getAuthUrl } from '@/config/api.config'
 import { IAuthResponse } from '@/store/user/user.interface'
+import { getContentType } from 'api/api.helper'
 import { axiosClassic } from 'api/interceptors'
 import Cookies from 'js-cookie'
 import { removeTokensStorage, saveToStorage } from './auth.helper'
-import { getContentType } from 'api/api.helper'
 
 export const AuthService = {
 	// REGISTER
@@ -27,7 +27,7 @@ export const AuthService = {
 	// LOGOUT
 	logout() {
 		removeTokensStorage()
-		localStorage.remove('user')
+		localStorage.removeItem('user')
 	},
 	// GET NEW TOKENS
 	async getNewTokens() {
@@ -41,7 +41,7 @@ export const AuthService = {
 			const response = await axiosClassic.post<IAuthResponse>(
 				getAuthUrl('/login/access-token'),
 				{ refreshToken },
-				{headers: getContentType()}
+				{ headers: getContentType() }
 			)
 
 			if (response.data.accessToken) {

@@ -8,7 +8,7 @@ interface ProgressbarProps {
 }
 
 const Progressbar: FC<ProgressbarProps> = ({ children }) => {
-	console.log(123)
+	
 	return (
 		<>
 			<NextProgressBar

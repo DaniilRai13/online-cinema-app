@@ -12,7 +12,7 @@ import logoImage from '@/assets/images/logo.png'
 const Meta: FC<ISeo> = ({ title, description, image, children }) => {
 	const pathname = usePathname()
 	const currentUrl = `${process.env.APP_URL}${pathname}`
-	console.log(title, description)
+	
 	return (
 		<>
 			{description ? (

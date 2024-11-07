@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation'
 import { FC, ReactNode } from 'react'
 
 const CheckRole: FC<TypeComponentAuthFields & { children: ReactNode }> = ({ children, Component: { isOnlyUser, isOnlyAdmin } }) => {
-
 	const { user } = useAuth()
 	const pathname = usePathname()
 	const router = useRouter()
@@ -16,7 +15,7 @@ const CheckRole: FC<TypeComponentAuthFields & { children: ReactNode }> = ({ chil
 
 	if (user?.isAdmin) return <Children />
 	if (isOnlyAdmin) {
-		if (pathname !== '/404') router.push('/404')
+		pathname !== '/404' && router.replace('/')
 		return null
 	}
 

@@ -1,4 +1,4 @@
-import UsersList from '@/components/screens/Admin/Home/Users/UsersList'
+import UsersList from '@/components/screens/Admin/Users/UsersList'
 import { NextPageAuth } from '@/shared/types/auth.types'
 
 const UsersListPage: NextPageAuth = () => {

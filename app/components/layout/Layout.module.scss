@@ -8,18 +8,22 @@ $bar-width: 20%;
 		@apply fixed top-0 bottom-0 overflow-y-scroll;
 		width: $bar-width;
 		max-width: 350px;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 
 	>div:first-child {
-		@apply left-0 border-r border-r-gray-800;
+		@apply left-0;
 	}
 
 	>div:last-child {
-		@apply right-0 border-l border-r-gray-800;
+		@apply right-0;
 	}
 
 	.center {
-		@apply min-h-screen p-layout;
+		@apply min-h-screen border-l border-r border-[rgba(121,120,120,0.5)] p-layout;
 		margin: 0 $bar-width;
 	}
 }

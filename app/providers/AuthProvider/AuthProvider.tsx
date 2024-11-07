@@ -3,7 +3,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { TypeComponentAuthFields } from '@/shared/types/auth.types'
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { FC, ReactNode, useEffect, useState } from 'react'
 
 const DynamicImportRole = dynamic(() => import('./CheckRole'), { ssr: false })
@@ -13,7 +13,8 @@ const AuthProvider: FC<TypeComponentAuthFields & { children: ReactNode }> = ({ c
 
 	const { user } = useAuth()
 	const { logout, checkAuth } = useActions()
-	const router = useRouter()
+	// const router = useRouter()
+	const pathname = usePathname()
 
 	const Children = () => {
 		return <>{children}</>
@@ -24,10 +25,8 @@ const AuthProvider: FC<TypeComponentAuthFields & { children: ReactNode }> = ({ c
 
 		if (accessToken) {
 			checkAuth()
-			setIsLoading(false)
-		} else {
-			setIsLoading(false)
 		}
+		setIsLoading(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
@@ -35,10 +34,8 @@ const AuthProvider: FC<TypeComponentAuthFields & { children: ReactNode }> = ({ c
 		const refreshToken = Cookies.get('refreshToken')
 		if (!refreshToken && user) {
 			logout()
-			router.push('/auth')
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [pathname])
 
 
 	return isLoading ? <div> Loading...</div > : (!isOnlyAdmin && !isOnlyUser

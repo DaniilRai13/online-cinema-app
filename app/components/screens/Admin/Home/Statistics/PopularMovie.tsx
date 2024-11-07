@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { useQuery } from 'react-query'
-import styles from '../Admin.module.scss'
+import styles from '../../Admin.module.scss'
 
 const PopularMovie: FC = () => {
 	const { isLoading, data: movie } = useQuery('Most popular movie in admin', () => MovieService.getMostPopularMovies(), {

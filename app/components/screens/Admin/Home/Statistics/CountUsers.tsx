@@ -3,7 +3,7 @@ import SkeletonLoader from '@/ui/SkeletonLoader'
 import cn from 'classnames'
 import { FC } from 'react'
 import { useQuery } from 'react-query'
-import styles from '../Admin.module.scss'
+import styles from '../../Admin.module.scss'
 
 const CountUsers: FC = () => {
 	const { isLoading, data: userCount } = useQuery('Count users', () => AdminService.getCountUsers())

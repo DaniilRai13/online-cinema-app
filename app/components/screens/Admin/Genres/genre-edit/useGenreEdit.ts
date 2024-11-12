@@ -1,7 +1,8 @@
+'use client'
 import { GenreServices } from '@/services/genre.service'
 import { getKeys } from '@/utils/object/getKeys'
 import { toastError } from '@/utils/toast-error'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
@@ -10,10 +11,10 @@ import { getAdminUrl } from '@/config/url.config'
 
 const useGenreEdit = (setValue: UseFormSetValue<IGenreEditInput>) => {
 	const { push } = useRouter()
-	const searchParams = useSearchParams()
+	const params = useParams()
 
-	const genreId = String(searchParams?.get('id'))
-
+	const genreId = String(params?.id)
+	
 	const { isLoading } = useQuery(['genre edit', genreId], () => GenreServices.getById(genreId), {
 		onSuccess({ data }) {
 			getKeys(data).forEach((key) => {

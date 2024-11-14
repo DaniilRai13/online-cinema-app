@@ -8,12 +8,16 @@ import { FC } from 'react'
 import { useGenres } from './useGenres'
 
 const GenresList: FC = () => {
-	const { isLoading, handleSearch, searchTerm, data, deleteAsync } = useGenres()
+	const { isLoading, handleSearch, searchTerm, data, deleteAsync, createAsync } = useGenres()
 	return (
 		<Meta title='Users'>
 			<AdminNavigation />
 			<Heading title='Genres' />
-			<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} />
+			<AdminHeader
+				handleSearch={handleSearch}
+				searchTerm={searchTerm}
+				onClick={createAsync}
+			/>
 			<AdminTable
 				isLoading={isLoading}
 				removeHandler={deleteAsync}

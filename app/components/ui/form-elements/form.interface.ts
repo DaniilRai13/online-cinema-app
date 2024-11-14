@@ -1,5 +1,5 @@
 import { EditorProps } from 'draft-js'
-import { ButtonHTMLAttributes, InputHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, CSSProperties, InputHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> { }
@@ -17,4 +17,14 @@ export interface ITextEditor extends Omit<TypeEditFieldsProps, 'editorState'> {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onChange: (...event: any[]) => void
 	value: string
+}
+
+export interface IUploadField {
+	folder?: string
+	value?: string
+	onChange: (...event: any[]) => void
+	placeholder: string
+	error?: FieldError
+	style?: CSSProperties
+	isNoImage?: boolean
 }

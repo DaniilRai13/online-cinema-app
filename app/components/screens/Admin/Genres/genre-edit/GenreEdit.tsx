@@ -80,7 +80,7 @@ const GenreEdit: FC = () => {
 								},
 							}}
 						/>
-						<Button>Edit</Button>
+						<Button>Update</Button>
 					</>
 				}
 			</form>

@@ -1,8 +1,9 @@
 import { getAdminUrl } from '@/config/url.config'
 import { useDebounce } from '@/hooks/useDebounce'
-import { GenreServices } from '@/services/genre.service'
+import { GenreService } from '@/services/genre.service'
 import { ITableItem } from '@/ui/admin-table/AdminTable/adminTable.interface'
 import { toastError } from '@/utils/toast-error'
+import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
@@ -10,8 +11,9 @@ import { toastr } from 'react-redux-toastr'
 export const useGenres = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const debounceSearch = useDebounce(searchTerm, 500)
+	const {push}=useRouter()
 
-	const queryData = useQuery(['genres list', debounceSearch], () => GenreServices.getAll(debounceSearch), {
+	const queryData = useQuery(['genres list', debounceSearch], () => GenreService.getAll(debounceSearch), {
 		select: ({ data }) => data.map((genre): ITableItem => ({
 			_id: genre._id,
 			editUrl: getAdminUrl(`genre/edit/${genre._id}`),
@@ -22,7 +24,7 @@ export const useGenres = () => {
 		}
 	})
 
-	const { mutateAsync: deleteAsync } = useMutation('delete genre', (genreId: string) => GenreServices.delete(genreId), {
+	const { mutateAsync: deleteAsync } = useMutation('delete genre', (genreId: string) => GenreService.delete(genreId), {
 		onError: (error) => {
 			toastError(error, 'Delete genre')
 		},
@@ -32,6 +34,15 @@ export const useGenres = () => {
 		}
 	})
 
+	const { mutateAsync: createAsync } = useMutation('create genre', () => GenreService.create(), {
+		onSuccess({ data: _id }) {
+			toastr.success('Create genre', 'create was success')
+			push(getAdminUrl(`genre/edit/${_id}`))
+		},
+		onError(error) {
+			toastError(error, 'Create genre')
+		},
+	})
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
@@ -40,7 +51,8 @@ export const useGenres = () => {
 		handleSearch,
 		...queryData,
 		searchTerm,
-		deleteAsync
-	}), [queryData, searchTerm, deleteAsync]
+		deleteAsync,
+		createAsync
+	}), [queryData, searchTerm, deleteAsync,createAsync]
 	)
 }

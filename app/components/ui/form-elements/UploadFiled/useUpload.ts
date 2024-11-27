@@ -4,6 +4,7 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 
 type TypeUpload = (
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onChange: (...event: any[]) => void,
 	folder?: string
 ) => {

@@ -2,6 +2,7 @@ import { EditorProps } from 'draft-js'
 import { ButtonHTMLAttributes, CSSProperties, InputHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> { }
 
 export interface IFieldProps {
@@ -10,6 +11,7 @@ export interface IFieldProps {
 }
 
 type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IField extends TypeInputPropsField { }
 
 type TypeEditFieldsProps = EditorProps & IFieldProps
@@ -22,6 +24,7 @@ export interface ITextEditor extends Omit<TypeEditFieldsProps, 'editorState'> {
 export interface IUploadField {
 	folder?: string
 	value?: string
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onChange: (...event: any[]) => void
 	placeholder: string
 	error?: FieldError

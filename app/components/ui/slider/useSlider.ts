@@ -7,7 +7,7 @@ export const useSlider = (length: number) => {
 	const isExistNext = currentIndex + 1 < length
 	const isExistPrev = currentIndex > 0
 
-	const handleArrowClick = (direction: 'next' | 'rev') => {
+	const handleArrowClick = (direction: 'next' | 'prev') => {
 		const newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1
 		setSlideIn(false)
 
